@@ -58,4 +58,9 @@ $lighter_color: #033e6a;
         display: flex;
         justify-content: space-between;
     }
+    &-sum {
+        padding-top: 20px;
+        color:$accent_color;
+        font-weight: bold;
+    }
 }

@@ -1,23 +1,59 @@
 'use strict';
 
-const goods = [
-    { title: 'Shirt', price: 150 },
-    { title: 'Socks' },
-    { title: 'Jacket', price: 350 },
-    { title: 'Shoes', price: 250 },
-];
-    
-const renderGoodsItem = (title, price=10) => 
-    `<div class="goods-item">
-        <h3>${title}</h3>
-        <p>${price}</p>
-    </div>`;
+class GoodsItem {
+    constructor(title, price) {
+        this.title = title;
+        this.price = price;
+    }
 
-//нужно добавить join('')-позволяет преобразовать и объединить все элементы массива в одно 
-//строковое значение; по умолчанию, элементы массива будут разделены запятой
- const renderGoodsList = list => {
-    let goodsList = list.map(item => renderGoodsItem(item.title, item.price)).join('');
-    document.querySelector('.goods-list').innerHTML = goodsList;
+    render() {
+        return (
+            `<div class="goods-item">
+                <h3>${this.title}</h3>
+                <p>${this.price}</p>
+            </div>`
+        );
+    }
 }
 
-renderGoodsList(goods);
+class GoodsList {
+    constructor() {
+        this.goods = [];
+    }
+    fetchGoods() {
+        this.goods = [
+            { title: 'Shirt', price: 150 },
+            { title: 'Socks', price: 50 },
+            { title: 'Jacket', price: 350 },
+            { title: 'Shoes', price: 250 },
+        ];
+    }
+
+    sumGoods() {
+        let x = 0;
+        this.goods.map(good => x += good.price, x);
+        document.querySelector('.goods-sum').innerHTML = `Сумма всех товаров: ${x}`;
+    }
+
+    render() {
+        let listHtml = '';
+        this.goods.forEach(good => {
+            const goodItem = new GoodsItem(good.title, good.price);
+            listHtml += goodItem.render();
+        });
+        document.querySelector('.goods-list').innerHTML = listHtml;
+    }
+}
+
+class BasketItem {
+
+}
+
+class Basket {
+
+}
+
+const list = new GoodsList();
+list.fetchGoods();
+list.render();
+list.sumGoods();
