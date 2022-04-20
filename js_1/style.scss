@@ -20,7 +20,7 @@ p {
     font-family:'SF Pro Display', sans-serif;
 }
 
-.header{
+.header {
     display: flex;
     background-color: #2f2a2d;
     justify-content: space-between;
@@ -34,7 +34,7 @@ p {
     align-self: center;
 }
 
-.invisible{
+.invisible {
     display: none;
 }
 
@@ -43,7 +43,7 @@ p {
     padding: 15px
 }
 
-.products{
+.products {
     column-gap: 30px;
     display: grid;
     grid-template-columns: repeat(auto-fit, 200px);
@@ -53,29 +53,29 @@ p {
 }
 
 .product {
+    display: flex;
+    flex-direction: column;
     &-item {
-        display: flex;
-        flex-direction: column;
         width: 200px;
         border-radius: 5px;
         overflow: hidden;
         margin: 20px 0;
     }
-    &-single-price{
+    &-single-price {
         color: #474747;
         font-size: 0.5em;
     }
-    &-price{
+    &-price {
         margin-left: 30px;
     }
-    &-desc{
+    &-desc {
         max-width: 150px;
     }
     &-quantity {
         margin-top: 15px;
         font-size: 0.75em;
     }
-    &-bio{
+    &-bio {
         display: flex;
     }
 }
@@ -160,17 +160,17 @@ p {
     &-item {
         display: flex;
         justify-content: space-between;
-       &:not(:last-child){
+       &:not(:last-child) {
             margin-bottom: 20px;
         }
-        & img{
+        & img {
             align-self: flex-start;
             margin-right: 15px;
         }
     }
 }
 
-.right-block{
+.right-block {
     text-align: right;
 }
 
@@ -182,6 +182,7 @@ p {
     position: absolute;
     bottom: 5px;
     right: 0;
+    cursor: pointer;
 }
 
 .search {
@@ -199,7 +200,7 @@ p {
         border: none;
         border-bottom: 2px solid #fafafa;
     
-        &:focus{
+        &:focus {
             outline: none;
         }
     }

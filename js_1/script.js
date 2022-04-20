@@ -9,7 +9,8 @@ class List {
         this.list = list;
         this.url = url;
         this.goods = [];
-        this.allProducts =[];
+        this.allProducts = [];
+        this.filtered = [];
         this._init(); //
     }
 
@@ -40,6 +41,21 @@ class List {
         }
     }
 
+    filter(value) {
+        const regExp = new RegExp(value, 'i');
+        this.filtered = this.allProducts.filter(product => regExp.test(product.product_name));
+        console.log(this.filtered);
+        this.allProducts.forEach(el => {
+            const good = document.querySelector(`.product-item[data-id="${el.id_product}"]`);
+            if (!this.filtered.includes(el)) {
+                good.classList.remove('product');
+                good.classList.add('invisible');
+            } else {
+                good.classList.remove('invisible');
+            }
+        });
+    }
+
     _init() { // _ - рекомендовано запускать метод только из текущего класса
         return false;
     }
@@ -56,7 +72,7 @@ class Item {
 
     render() {
         return (
-            `<div class="product-item" data-id="${this.id_product}">
+            `<div class="product-item product" data-id="${this.id_product}">
                 <img src="${this.img}" alt="product">
                 <div class="desc">
                     <h3>${this.product_name}</h3>
@@ -88,6 +104,10 @@ class ProductsList extends List {
             if (e.target.classList.contains('buy-btn')) {
                 this.cart.addProduct(e.target);
             }
+        });
+        document.querySelector('.search-form').addEventListener('submit', e => { // submit - для отправки по enter
+            e.preventDefault(); // отмена перегрузки страницы или перехода на другую страницу
+            this.filter(document.querySelector('.search-field').value);
         });
     }
 }
